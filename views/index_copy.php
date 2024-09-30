@@ -38,6 +38,8 @@ include 'components/card.php';
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Add New Vehicle</button>
         </div>
 
+        <p>scnjscnji</p>
+
         <!-- Modal for Adding Vehicle -->
         <div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -61,7 +63,10 @@ include 'components/card.php';
                                 formInput('Make Year', 'number', 'makeYear');
                                 formInput('Color', 'text', 'color');
                             ?>
+
+                            <!-- Dynamic Fields based on Vehicle Type -->
                             <div id="vehicleSpecificFields"></div>
+
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
@@ -116,6 +121,61 @@ include 'components/card.php';
         </div>
 
     </div>
+
+    <!-- JavaScript to handle dynamic form -->
+    <script>
+        const vehicleTypeSelect = document.getElementById('vehicleType');
+        const vehicleSpecificFields = document.getElementById('vehicleSpecificFields');
+
+        function updateVehicleForm(type) {
+            let html = '';
+
+            if (type === 'car') {
+                html = `
+                    <div class="mb-3">
+                        <label for="doors" class="form-label">Number of Doors</label>
+                        <input type="number" class="form-control" id="doors" name="doors">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fuelType" class="form-label">Fuel Type</label>
+                        <input type="text" class="form-control" id="fuelType" name="fuelType">
+                    </div>
+                `;
+            } else if (type === 'boat') {
+                html = `
+                    <div class="mb-3">
+                        <label for="hullType" class="form-label">Hull Type</label>
+                        <input type="text" class="form-control" id="hullType" name="hullType">
+                    </div>
+                    <div class="mb-3">
+                        <label for="engineType" class="form-label">Engine Type</label>
+                        <input type="text" class="form-control" id="engineType" name="engineType">
+                    </div>
+                `;
+            } else if (type === 'plane') {
+                html = `
+                    <div class="mb-3">
+                        <label for="wingSpan" class="form-label">Wing Span</label>
+                        <input type="number" class="form-control" id="wingSpan" name="wingSpan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="engineCount" class="form-label">Engine Count</label>
+                        <input type="number" class="form-control" id="engineCount" name="engineCount">
+                    </div>
+                `;
+            }
+
+            vehicleSpecificFields.innerHTML = html;
+        }
+
+        // Initial setup
+        updateVehicleForm(vehicleTypeSelect.value);
+
+        // Update form dynamically based on vehicle type selection
+        vehicleTypeSelect.addEventListener('change', function () {
+            updateVehicleForm(this.value);
+        });
+    </script>
 
     <!-- Bootstrap JavaScript Bundle (for modal functionality) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
