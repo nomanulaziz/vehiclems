@@ -1,8 +1,8 @@
 <?php
 // Include components
-include 'components/form-input.php';
-include 'components/form-dropdown.php';
-include 'components/card.php';
+include_once 'components/form-input.php';
+include_once 'components/form-dropdown.php';
+include_once 'components/card.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,23 +15,7 @@ include 'components/card.php';
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img src="../assets/vms_logo.png" class="bi me-2" width="40" height="40">
-            </a>
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-            </ul>
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
-            </div>
-        </header>
+        <?php include_once 'partials/nav.php'; ?>
 
         <!-- Add New Vehicle Button -->
         <div class="text-center">
@@ -49,17 +33,17 @@ include 'components/card.php';
                     <div class="modal-body">
                         <form id="vehicleForm" action="/vehicles/add" method="POST">
                             <?php
-                                formDropdown('Select Vehicle Type', 'vehicleType', [
+                                formDropdown(label: 'Select Vehicle Type', name:  'vehicleType', options: [
                                     'car' => 'Car',
                                     'boat' => 'Boat',
                                     'plane' => 'Plane'
-                                ], 'car');
+                                ], selected: 'car');
                                 
-                                formInput('Vehicle Name', 'text', 'name');
-                                formInput('Price', 'number', 'price');
-                                formInput('Speed', 'number', 'speed');
-                                formInput('Make Year', 'number', 'makeYear');
-                                formInput('Color', 'text', 'color');
+                                formInput(label: 'Vehicle Name', type: 'text', name: 'name');
+                                formInput(label: 'Price', type: 'number', name: 'price');
+                                formInput(label: 'Speed', type: 'number', name: 'speed');
+                                formInput(label: 'Make Year', type: 'number', name: 'makeYear');
+                                formInput(label: 'Color', type: 'text', name:  'color');
                             ?>
                             <div id="vehicleSpecificFields"></div>
                             <div class="modal-footer">
@@ -118,6 +102,7 @@ include 'components/card.php';
     </div>
 
     <!-- Bootstrap JavaScript Bundle (for modal functionality) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
