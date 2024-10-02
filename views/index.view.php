@@ -1,20 +1,4 @@
-<?php
-// Include components
-include_once 'components/form-input.php';
-include_once 'components/form-dropdown.php';
-include_once 'components/card.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Vehicle Management System</title>
-</head>
-<body>
-    <div class="container">
+<?php require 'partials/head.php'; ?>
         <?php include_once 'partials/nav.php'; ?>
 
         <!-- Add New Vehicle Button -->
@@ -98,11 +82,4 @@ include_once 'components/card.php';
                 ?>
             </div>
         </div>
-
-    </div>
-
-    <!-- Bootstrap JavaScript Bundle (for modal functionality) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php require 'partials/footer.php'; ?>

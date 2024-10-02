@@ -1,3 +1,5 @@
 <?php
 
-require '../views/index.view.php';
+$heading = 'About Page';
+
+require '../views/about.view.php';
