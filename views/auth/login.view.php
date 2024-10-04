@@ -1,5 +1,5 @@
 <?php
-include_once '../components/form-input.php';
+view('components/form-input.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ include_once '../components/form-input.php';
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 p-5 bg-success text-white rounded">
+            <div class="col-md-4 p-5 bg-dark text-white rounded">
 
                 <h2 class="text-center mb-4">Login</h2>
 
@@ -23,15 +23,15 @@ include_once '../components/form-input.php';
                         formInput(label: 'Password', type: 'password', name: 'password');
                     ?>
 
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn bg-dark text-white">
+                    <div class="mt-5">
+                        <button type="submit" class="btn bg-success text-white w-100">
                             Login
                         </button>
                     </div>
                 </form>
 
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <a href="/vehiclems/signup" class="text-dark">Sign-up here</a></p>
+                    <p> <span class="text-secondary">Don't have an account? </span><a href="/signup" class="text-light">Sign-up here</a></p>
                 </div>
             </div>
         </div>

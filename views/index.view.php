@@ -1,13 +1,13 @@
-<?php require 'partials/head.php'; ?>
-        <?php include_once 'partials/nav.php'; ?>
+<?php require BASE_PATH . 'views/partials/head.php'; ?>
+        <?php require BASE_PATH . 'views/partials/nav.php'; ?>
 
         <!-- Add New Vehicle Button -->
-        <div class="text-center">
+        <!-- <div class="text-center">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Add New Vehicle</button>
-        </div>
+        </div> -->
 
         <!-- Modal for Adding Vehicle -->
-        <div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -16,19 +16,6 @@
                     </div>
                     <div class="modal-body">
                         <form id="vehicleForm" action="/vehicles/add" method="POST">
-                            <?php
-                                formDropdown(label: 'Select Vehicle Type', name:  'vehicleType', options: [
-                                    'car' => 'Car',
-                                    'boat' => 'Boat',
-                                    'plane' => 'Plane'
-                                ], selected: 'car');
-                                
-                                formInput(label: 'Vehicle Name', type: 'text', name: 'name');
-                                formInput(label: 'Price', type: 'number', name: 'price');
-                                formInput(label: 'Speed', type: 'number', name: 'speed');
-                                formInput(label: 'Make Year', type: 'number', name: 'makeYear');
-                                formInput(label: 'Color', type: 'text', name:  'color');
-                            ?>
                             <div id="vehicleSpecificFields"></div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -37,7 +24,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Display Vehicles -->
         <div class="container mt-5">
@@ -82,4 +69,4 @@
                 ?>
             </div>
         </div>
-<?php require 'partials/footer.php'; ?>
+<?php require BASE_PATH . 'views/partials/footer.php'; ?>

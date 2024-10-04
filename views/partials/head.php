@@ -1,8 +1,8 @@
 <?php
 // Include components
-include_once '../components/form-input.php';
-include_once '../components/form-dropdown.php';
-include_once '../components/card.php';
+view('components/form-input.php');
+view('components/form-dropdown.php');
+view('components/card.php');
 ?>
 
 <!DOCTYPE html>

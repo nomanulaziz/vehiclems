@@ -1,23 +1,10 @@
 <?php
-
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-// dd($uri);
-
-
-$routes = [
-    '/' => '../controllers/index.php',
-    '/vehicles' => '../controllers/vehicles.php',
-    '/vehicle' => '../controllers/vehicle.php',
-    '/about' => '../controllers/about.php',
-    '/contact' => '../controllers/contact.php',
-    '/login' => '../controllers/login.php',
-    '/signup' => '../controllers/signup.php',
-];
-
+$routes = require BASE_PATH .  "routes.php";
 
 function routeToController($uri, $routes)
 {
+    // check if the key $uri (e.g. /, /about, /contact) 
+    // exists in the array $routes from routes.php
     if(array_key_exists($uri, $routes)){
         require $routes[$uri];
     }
@@ -33,5 +20,8 @@ function abort($code = 404) {
 
     die();
 }
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+// dd($uri);
 
 routeToController($uri, $routes);

@@ -1,7 +1,7 @@
-<?php require 'partials/head.php'; ?>
-<?php include_once 'partials/nav.php'; ?>
-<?php include_once 'partials/banner.php'; ?>
+<?php require BASE_PATH . 'views/partials/head.php'; ?>
+<?php require BASE_PATH . 'views/partials/nav.php'; ?>
+<?php require BASE_PATH . 'views/partials/banner.php'; ?>
 
 <p>Welcome to contact page</p>
 
-<?php require 'partials/footer.php'; ?>
+<?php require BASE_PATH . 'views/partials/footer.php'; ?>

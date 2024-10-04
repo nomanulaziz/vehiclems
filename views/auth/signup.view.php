@@ -1,5 +1,5 @@
 <?php
-include_once '../components/form-input.php';
+view('components/form-input.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ include_once '../components/form-input.php';
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 p-5 bg-success text-white rounded">
+            <div class="col-md-4 p-5 bg-dark text-white rounded">
     
                 <h2 class="text-center mb-4">Sign Up</h2>
                 
@@ -25,15 +25,15 @@ include_once '../components/form-input.php';
                     formInput(label: 'Confirm Password', type: 'password', name: 'confirm_password');
                     ?>
     
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn bg-dark text-white">
+                <div class="mt-5">
+                    <button type="submit" class="btn bg-success text-white w-100">
                         Sign Up
                     </button>
                 </div>
                 </form>
     
                 <div class="text-center mt-3">
-                    <p>Already have an account? <a href="/vehiclems//login" class="text-dark">Login here</a></p>
+                    <p> <span class="text-secondary">Already have an account? </span> <a href="/login" class="text-light">Login here</a></p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <?php
-include_once 'components/form-input.php';
+require BASE_PATH . 'views/components/form-input.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'login'; // Default to 'login'
 print_r($action);
