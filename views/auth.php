@@ -1,8 +1,8 @@
 <?php
-require BASE_PATH . 'views/components/form-input.php';
+require base_path('views/components/form-input.php');
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'login'; // Default to 'login'
-print_r($action);
+// print_r($action);
 ?>
 
 <!DOCTYPE html>

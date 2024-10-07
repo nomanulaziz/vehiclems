@@ -1,15 +1,17 @@
-<?php require BASE_PATH . 'views/partials/head.php'; ?>
-<?php require BASE_PATH . 'views/partials/nav.php'; ?>
-<?php require BASE_PATH . 'views/partials/banner.php'; ?>
+<?php require base_path('views/partials/head.php'); ?>
+<?php require base_path('views/partials/nav.php'); ?>
+<?php require base_path('views/partials/banner.php'); ?>
 
 
 <main>
-    <div class="mx-auto py-6 px-3">
-        <p>
+    <div class="container mt-5">
+        <p class="mb-5">
             <a href="/vehicles" class="btn btn-secondary btn-sm">Go Back</a>
         </p>
-        <p class="text-lg"> <strong> <?= htmlspecialchars($vehicle['name']) ?> </strong> </p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <?php vehicleCard($vehicle); ?>
+        </div>
     </div>
 </main>
 
-<?php require BASE_PATH . 'views/partials/footer.php'; ?>
+<?php require base_path('views/partials/footer.php'); ?>

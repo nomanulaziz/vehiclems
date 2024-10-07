@@ -1,8 +1,10 @@
 <?php
 
-function formInput($label, $type, $name, $required = true) {
+function formInput($label, $type, $name, $value = '', $required = true) {
     $requiredAttr = $required ? 'required' : '';
-    $value = $_POST[$name] ?? ''; // if exists and not null store in value
+    if($value == '') {
+        $value = $_POST[$name] ?? ''; // if exists and not null store in value
+    }
 
     echo "
     <div class='mb-1'>

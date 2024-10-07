@@ -1,16 +1,8 @@
-<?php
-view('components/form-input.php');
-?>
+<?php require base_path('views/partials/head.php'); ?>
+<?php require base_path('views/partials/nav.php'); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title> Login </title>
-</head>
-<body>
+<main>
+
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 p-5 bg-dark text-white rounded">
@@ -35,10 +27,7 @@ view('components/form-input.php');
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+</main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php require base_path('views/partials/footer.php'); ?>

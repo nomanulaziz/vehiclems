@@ -1,5 +1,5 @@
-<?php require BASE_PATH . 'views/partials/head.php'; ?>
-        <?php require BASE_PATH . 'views/partials/nav.php'; ?>
+<?php view('partials/head.php'); ?>
+        <?php view('partials/nav.php'); ?>
 
         <!-- Add New Vehicle Button -->
         <!-- <div class="text-center">
@@ -33,8 +33,8 @@
                 <?php
                 // Sample data, replace this with actual data from the database
                 $cars = [
-                    ['name' => 'Tesla Model S', 'price' => '80000', 'speed' => '250', 'makeYear' => '2020', 'color' => 'Red'],
-                    ['name' => 'BMW i8', 'price' => '150000', 'speed' => '230', 'makeYear' => '2019', 'color' => 'White']
+                    ['id' => '1', 'name' => 'Tesla Model S', 'price' => '80000', 'speed' => '250', 'make_year' => '2020', 'color' => 'Red'],
+                    ['id' => '2', 'name' => 'BMW i8', 'price' => '150000', 'speed' => '230', 'make_year' => '2019', 'color' => 'White']
                 ];
                 foreach ($cars as $car) {
                     vehicleCard($car);
@@ -47,7 +47,7 @@
                 <?php
                 // Sample data for boats
                 $boats = [
-                    ['name' => 'Yacht X', 'price' => '500000', 'speed' => '60', 'makeYear' => '2018', 'color' => 'Blue']
+                    ['id' => '3', 'name' => 'Yacht X', 'price' => '500000', 'speed' => '60', 'make_year' => '2018', 'color' => 'Blue']
                 ];
                 foreach ($boats as $boat) {
                     vehicleCard($boat);
@@ -60,8 +60,8 @@
                 <?php
                     // Sample data for planes
                     $planes = [
-                        ['name' => 'Boeing 737', 'price' => '8000000', 'speed' => '850', 'makeYear' => '2015', 'color' => 'White'],
-                        ['name' => 'Cessna 172', 'price' => '300000', 'speed' => '226', 'makeYear' => '2017', 'color' => 'Silver']
+                        ['id' => '4', 'name' => 'Boeing 737', 'price' => '8000000', 'speed' => '850', 'make_year' => '2015', 'color' => 'White'],
+                        ['id' => '5', 'name' => 'Cessna 172', 'price' => '300000', 'speed' => '226', 'make_year' => '2017', 'color' => 'Silver']
                     ];
                     foreach ($planes as $plane) {
                         vehicleCard($plane);
@@ -69,4 +69,4 @@
                 ?>
             </div>
         </div>
-<?php require BASE_PATH . 'views/partials/footer.php'; ?>
+<?php view('partials/footer.php'); ?>

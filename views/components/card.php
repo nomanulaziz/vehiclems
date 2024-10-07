@@ -7,9 +7,16 @@ function vehicleCard($vehicle) {
             <div class='card-body'>
                 <h5 class='card-title'>{$vehicle['name']}</h5>
                 <p class='card-text'>Price: {$vehicle['price']}</p>
-                <p class='card-text'>Speed: {$vehicle['speed']}</p>
-                <p class='card-text'>Make Year: {$vehicle['makeYear']}</p>
+                <p class='card-text'>Make Year: {$vehicle['make_year']}</p>
                 <p class='card-text'>Color: {$vehicle['color']}</p>
+                <div class='float-end'>
+                    <a href='/vehicle/edit?id={$vehicle['id']}' class='btn btn-sm btn-outline-primary'>Edit</a>
+                    <form action='/vehicle' method='POST' class='float-start d-inline-block'>
+                        <input type='hidden' name='_method' value='DELETE' >
+                        <input type='hidden' name='id' value='{$vehicle['id']}'>
+                        <button class='btn btn-sm btn-outline-danger px-3'>Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>";

@@ -1,8 +1,9 @@
 <?php
+namespace Core;
 
 class Validator {
 
-    public static function string (mixed $value, int $min = 1, int $max = INF)
+    public static function string (mixed $value, int $min = 1, int $max = 1000)
     {
         $value = trim($value);
 
