@@ -8,13 +8,32 @@
     
                 <h2 class="text-center mb-4">Sign Up</h2>
                 
-                <form action="/auth/signup" method="POST">
+                <form action="/signup" method="POST">
                     <?php
-                    formInput(label: 'Full Name', type: 'text', name: 'full_name');
-                    formInput(label: 'Email address', type: 'email', name: 'email');
-                    formInput(label: 'Password', type: 'password', name: 'password');
-                    formInput(label: 'Confirm Password', type: 'password', name: 'confirm_password');
+                    formInput(label: 'Full Name', type: 'text', name: 'name', required: false);
+                    if(isset($errors['name'])) {
+                        echo "<p class='text-danger small'>{$errors['name']}</p>";
+                    }
+
+                    formInput(label: 'Email address', type: 'email', name: 'email', required: false);
+                    if(isset($errors['email'])) {
+                        echo "<p class='text-danger small'>{$errors['email']}</p>";
+                    }
+
+                    formInput(label: 'Password', type: 'password', name: 'password', required: false);
+                    if(isset($errors['password'])) {
+                        echo "<p class='text-danger small'>{$errors['password']}</p>";
+                    }
+
+                    formInput(label: 'Confirm Password', type: 'password', name: 'confirm_password', required: false);
+                    if(isset($errors['confirm_password'])) {
+                        echo "<p class='text-danger small'>{$errors['confirm_password']}</p>";
+                    }
+                    if(isset($errors['user_exists'])) {
+                        echo "<p class='text-danger small'>{$errors['user_exists']}</p>";
+                    }
                     ?>
+                    
     
                 <div class="mt-5">
                     <button type="submit" class="btn bg-success text-white w-100">

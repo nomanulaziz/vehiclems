@@ -8,6 +8,6 @@ $db = App::resolve(Database::class);
 $vehicles = $db->query('select * from vehicles where created_by = 1')->get();
 
 view('vehicles/index.view.php', [
-    'heading' => 'Vehicles',
+    'heading' => 'My Vehicles',
     'vehicles' => $vehicles
 ]);

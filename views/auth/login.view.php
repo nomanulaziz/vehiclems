@@ -9,10 +9,20 @@
 
                 <h2 class="text-center mb-4">Login</h2>
 
-                <form action="/auth/login" method="POST">
+                <form action="/login" method="POST">
                     <?php
                         formInput(label: 'Email address', type: 'email', name: 'email');
+                        if(isset($errors['email'])) {
+                            echo "<p class='text-danger small'>{$errors['email']}</p>";
+                        }
+                        
                         formInput(label: 'Password', type: 'password', name: 'password');
+                        if(isset($errors['password'])) {
+                            echo "<p class='text-danger small'>{$errors['password']}</p>";
+                        }
+                        if(isset($errors['invalid_credentials'])) {
+                            echo "<p class='text-danger small'>{$errors['invalid_credentials']}</p>";
+                        }
                     ?>
 
                     <div class="mt-5">

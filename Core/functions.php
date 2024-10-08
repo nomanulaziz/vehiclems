@@ -66,3 +66,9 @@ use Core\Response;
         // print_r(base_path('views/' . $path)); echo "\n";
         require base_path('views/' . $path);
     }
+
+    function redirect($path) 
+    {
+        header("location: {$path}");
+        exit();
+    }

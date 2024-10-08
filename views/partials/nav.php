@@ -5,16 +5,35 @@
     </a>
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/" class="<?= urlIs('/') ?>nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="/vehicles" class="<?= urlIs('/vehicles') ?>nav-link px-2 link-secondary">Vehicles</a></li>
+        <?php if($_SESSION['user'] ?? false ) : ?>
+            <li><a href="/vehicles" class="<?= urlIs('/vehicles') ?>nav-link px-2 link-secondary">My Vehicles</a></li>
+        <?php endif; ?>
         <li><a href="/about" class="<?= urlIs('/about') ?>nav-link px-2 link-dark">About</a></li>
         <li><a href="/contact" class="<?= urlIs('/contact') ?>nav-link px-2 link-dark">Contact</a></li>
     </ul>
-    <div class="col-md-3 text-end">
-        <a href="/login">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        </a>
-        <a href="/signup">
-            <button type="button" class="btn btn-primary">Sign-up</button>
-        </a>
+    <div>
+        </div>
+        <div class="col-md-3 text-end">
+            <?php if($_SESSION['user'] ?? false) : ?>
+                <!-- User greeting -->
+                <div class="d-flex align-items-center">
+                    <span class='text-gray-500'> Welcome <strong> <?= $_SESSION['user']['name'] ?? "Guest" ?> </strong> </span>
+                    
+                    <form action="/logout" method="POST">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button class="ms-2 btn btn-sm btn-outline-secondary">Logout</button>
+                    </form>
+                </div>
+            <?php else : ?>
+                <div class="d-flex">
+                    <a href="/login">
+                        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                    </a>
+
+                    <a href="/signup">
+                        <button type="button" class="btn btn-outline-success">Sign-up</button>
+                    </a>
+                </div>
+            <?php endif; ?>
     </div>
 </header>
