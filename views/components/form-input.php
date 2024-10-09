@@ -2,9 +2,6 @@
 
 function formInput($label, $type, $name, $value = '', $required = true) {
     $requiredAttr = $required ? 'required' : '';
-    if($value == '') {
-        $value = $_POST[$name] ?? ''; // if exists and not null store in value
-    }
 
     echo "
     <div class='mb-1'>

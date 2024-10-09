@@ -1,10 +1,14 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 session_start();
 
 const BASE_PATH = __DIR__.'/../'; 
+
+//instead using composer autoload now
+require BASE_PATH . "vendor/autoload.php";
 
 // print_r(BASE_PATH);
 
@@ -15,16 +19,16 @@ require BASE_PATH . "Core/functions.php";
 // require base_path("Core/Response.php");
 
 // autoloading Database.php
-spl_autoload_register(function ($class) {
-    // $class = Core\Database
-    // if(str_contains($class, 'Core')) {
-        $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    // } else {
-    //     $class = "Core\\" . $class;
-    // }
+// spl_autoload_register(function ($class) {
+//     // $class = Core\Database
+//     // if(str_contains($class, 'Core')) {
+//         $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+//     // } else {
+//     //     $class = "Core\\" . $class;
+//     // }
    
-    require base_path("{$class}.php"); // BASE_PATH . Core/Database.php
-});
+//     require base_path("{$class}.php"); // BASE_PATH . Core/Database.php
+// });
 
 require base_path("bootstrap.php");
 
@@ -36,6 +40,16 @@ $routes = require base_path("routes.php");
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-$router->route($uri, $method);
+try 
+{
+    $router->route($uri, $method);
+}
+catch (ValidationException $exception)
+{
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $exception->old);
+
+    return redirect($router->previousUrl());
+}
 
 Session::unflash();

@@ -11,7 +11,7 @@
 
                 <form action="/login" method="POST">
                     <?php
-                        formInput(label: 'Email address', type: 'email', name: 'email');
+                        formInput(label: 'Email address', type: 'email', name: 'email', value: old('email'));
                         if(isset($errors['email'])) {
                             echo "<p class='text-danger small'>{$errors['email']}</p>";
                         }

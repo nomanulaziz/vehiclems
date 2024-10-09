@@ -1,0 +1,26 @@
+{
+    "name": "unitedsol/vehiclems",
+    "authors": [
+        {
+            "name": "nomanulaziz",
+            "email": "maliknoman9820@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^11.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
