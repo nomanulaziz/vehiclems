@@ -41,6 +41,17 @@ CREATE TABLE IF NOT EXISTS `cars` (
 
 -- Data exporting was unselected.
 
+-- Dumping structure for table vehiclems.companies
+CREATE TABLE IF NOT EXISTS `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table vehiclems.planes
 CREATE TABLE IF NOT EXISTS `planes` (
   `id` int(11) NOT NULL,
@@ -63,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
 -- Data exporting was unselected.
 
@@ -72,19 +83,54 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `price` varchar(50) NOT NULL DEFAULT '',
-  `speed` int(11) NOT NULL COMMENT 'Km/h',
   `make_year` year(4) NOT NULL,
   `color` varchar(50) DEFAULT NULL,
+  `description` text NOT NULL,
   `vehicle_type_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_deleted` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`id`),
   KEY `vehicle_type_id` (`vehicle_type_id`),
   KEY `created_by` (`created_by`),
+  KEY `FK_vehicles_companies` (`company_id`),
+  KEY `FK_vehicles_vehicle_models` (`model_id`),
+  CONSTRAINT `FK_vehicles_companies` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `FK_vehicles_vehicle_models` FOREIGN KEY (`model_id`) REFERENCES `vehicle_models` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`vehicle_type_id`) REFERENCES `vehicle_types` (`id`),
   CONSTRAINT `vehicles_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table vehiclems.vehicle_images
+CREATE TABLE IF NOT EXISTS `vehicle_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `vehicle_id` (`vehicle_id`),
+  CONSTRAINT `vehicle_images_ibfk_1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table vehiclems.vehicle_models
+CREATE TABLE IF NOT EXISTS `vehicle_models` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `vehicle_models_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
 -- Data exporting was unselected.
 
