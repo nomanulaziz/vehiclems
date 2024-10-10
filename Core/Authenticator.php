@@ -15,11 +15,11 @@ class Authenticator
 
         // // dd($user);
         if($user) {
-            // password and hash verification
+            // password and hash verification (built in function)
             if(password_verify($password, $user['password'])) 
             {
                 // mark that the user has logged-in
-                $this->login(['name' => $user['name']]);
+                $this->login(['name' => $user['name'], 'id' => $user['id']]);
 
                 return true;
             }
@@ -30,7 +30,8 @@ class Authenticator
     public function login($user)
     {
         return $_SESSION['user'] = [
-            'name' => $user['name']
+            'name' => $user['name'],
+            'id' => $user['id'],
         ];
 
         session_regenerate_id(true);

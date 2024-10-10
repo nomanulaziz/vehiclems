@@ -2,6 +2,7 @@
 // Include components
 view('components/form-input.php');
 view('components/form-dropdown.php');
+view('components/form-button.php');
 view('components/card.php');
 ?>
 

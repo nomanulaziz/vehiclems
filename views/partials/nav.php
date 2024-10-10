@@ -30,8 +30,8 @@
                         <button type="button" class="btn btn-outline-primary me-2">Login</button>
                     </a>
 
-                    <a href="/signup">
-                        <button type="button" class="btn btn-outline-success">Sign-up</button>
+                    <a href="/register">
+                        <button type="button" class="btn btn-outline-success">Register</button>
                     </a>
                 </div>
             <?php endif; ?>

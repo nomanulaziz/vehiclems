@@ -2,13 +2,13 @@
 <?php require base_path('views/partials/nav.php'); ?>
 
 <main>
-    <div class="container mt-5">
+    <div class="container my-5">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 p-5 bg-dark text-white rounded">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 p-5 bg-dark text-white rounded">
     
-                <h2 class="text-center mb-4">Sign Up</h2>
+                <h2 class="text-center mb-4">Register</h2>
                 
-                <form action="/signup" method="POST">
+                <form action="/register" method="POST">
                     <?php
                     formInput(label: 'Full Name', type: 'text', name: 'name', required: false);
                     if(isset($errors['name'])) {
@@ -32,14 +32,9 @@
                     if(isset($errors['user_exists'])) {
                         echo "<p class='text-danger small'>{$errors['user_exists']}</p>";
                     }
+
+                    formButton(title: 'Register');
                     ?>
-                    
-    
-                <div class="mt-5">
-                    <button type="submit" class="btn bg-success text-white w-100">
-                        Sign Up
-                    </button>
-                </div>
                 </form>
     
                 <div class="text-center mt-3">

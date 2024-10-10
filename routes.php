@@ -1,26 +1,19 @@
 <?php
 
-$router->get('/', 'index.php');
+$router->get('/', 'Home/index');
+$router->get('/vehicles', 'Vehicles/index')->only('auth');
+$router->get('/vehicle', 'Vehicles/show');
+$router->get('/vehicle/create', 'Vehicles/create');
+$router->post('/vehicles', 'Vehicles/store');
+$router->get('/vehicle/edit', 'Vehicles/edit');
+$router->patch('/vehicle', 'Vehicles/update');
+$router->delete('/vehicle', 'Vehicles/destroy');
+$router->get('/about', 'Pages/about');
+$router->get('/contact', 'Pages/contact');
 
-$router->get('/vehicles', 'vehicles/index.php')->only('auth');
-
-$router->get('/vehicle', 'vehicles/show.php');
-$router->delete('/vehicle', 'vehicles/destroy.php');
-
-$router->get('/vehicle/create', 'vehicles/create.php');
-$router->post('/vehicles', 'vehicles/store.php');
-
-$router->get('/vehicle/edit', 'vehicles/edit.php');
-$router->patch('/vehicle', 'vehicles/update.php');
-
-$router->get('/about', 'about.php');
-$router->get('/contact', 'contact.php');
-
-// Authentiaction Routes
-$router->get('/signup', 'registration/create.php')->only('guest');
-$router->post('/signup', 'registration/store.php')->only('guest');
-
-$router->get('/login', 'sessions/create.php')->only('guest');
-$router->post('/login', 'sessions/store.php')->only('guest');
-
-$router->delete('/logout', 'sessions/destroy.php')->only('auth');
+// Authentication Routes
+$router->get('/register', 'Registration/create')->only('guest');
+$router->post('/register', 'Registration/store')->only('guest');
+$router->get('/login', 'Auth/create')->only('guest');
+$router->post('/login', 'Auth/login')->only('guest');
+$router->delete('/logout', 'Auth/logout')->only('auth');

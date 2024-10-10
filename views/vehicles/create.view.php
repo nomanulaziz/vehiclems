@@ -6,6 +6,7 @@
     <div class="mx-auto py-6 px-3">
         <form id="vehicleForm" action="/vehicles" method="POST">
             <?php
+                // var_dump(old('name'));
                 formDropdown(label: 'Select Vehicle Type', name:  'vehicleType', options: [
                     'car' => 'Car',
                     'boat' => 'Boat',

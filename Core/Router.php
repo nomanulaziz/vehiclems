@@ -8,11 +8,11 @@ use Core\Middleware\Middleware;
 class Router {
     protected $routes = [];
 
-    public function add($method, $uri, $controller)
+    public function add($method, $uri, $controllerAction)
     {
         $this->routes[] = [
             'uri' => $uri, 
-            'controller' => $controller, 
+            'controllerAction' => $controllerAction, 
             'method' => $method, 
             'middleware' => null
         ];
@@ -20,29 +20,29 @@ class Router {
         return $this;
     }
 
-    public function get($uri, $controller)
+    public function get($uri, $controllerAction)
     {
-        return $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controllerAction);
     }
 
-    public function post($uri, $controller)
+    public function post($uri, $controllerAction)
     {
-        return $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controllerAction);
     }
 
-    public function delete($uri, $controller)
+    public function delete($uri, $controllerAction)
     {
-        return $this->add('DELETE', $uri, $controller);
+        return $this->add('DELETE', $uri, $controllerAction);
     }
 
-    public function patch($uri, $controller)
+    public function patch($uri, $controllerAction)
     {
-        return $this->add('PATCH', $uri, $controller);
+        return $this->add('PATCH', $uri, $controllerAction);
     }
 
-    public function put($uri, $controller)
+    public function put($uri, $controllerAction)
     {
-        return $this->add('PUT', $uri, $controller);
+        return $this->add('PUT', $uri, $controllerAction);
     }
 
     public function only($key)
@@ -54,28 +54,53 @@ class Router {
 
     public function route($uri, $method)
     {
-        foreach($this->routes as $route) {
-            if($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
-                // apply the middleware
+        foreach ($this->routes as $route) {
+            if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
+                // Apply middleware
                 Middleware::resolve($route['middleware']);
                 
-                return require base_path('Http/controllers/' . $route['controller']);
-            } 
-       }
+                // Call the controller and method
+                return $this->callAction($route['controllerAction']);
+            }
+        }
 
-       $this->abort();
+        // If no route is matched, abort with a 404
+        $this->abort();
+    }
+
+    protected function callAction($controllerAction)
+    {
+        // Split the controller and action
+        list($controller, $action) = explode('/', $controllerAction);
+
+        // Build the full controller class name
+        $controller = "Http\\Controllers\\" . $controller;
+
+        if (!class_exists($controller)) {
+            throw new \Exception("Controller {$controller} not found");
+        }
+
+        // Instantiate the controller
+        $controller = new $controller;
+
+        // If action method is not specified, default to 'index'
+        if (!method_exists($controller, $action)) {
+            throw new \Exception("Action {$action} not found in controller {$controller}");
+        }
+
+        // Call the action method
+        return $controller->$action();
+    }
+
+    protected function abort($code = 404)
+    {
+        http_response_code($code);
+        require base_path("views/{$code}.php");
+        die();
     }
 
     public function previousUrl()
     {
         return redirect($_SERVER['HTTP_REFERER']);
-    }
-
-    protected function abort($code = 404) {
-        http_response_code($code);
-
-        require base_path("views/{$code}.php");
-
-        die();
     }
 }
